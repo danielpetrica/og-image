@@ -7,6 +7,7 @@
 </a>
 
 Serverless service that generates dynamic Open Graph images that you can embed in your `<meta>` tags.
+ **Without the zeit logo**
 
 For each keystroke, headless chromium is used to render an HTML page and take a screenshot of the result which gets cached.
 
