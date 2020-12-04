@@ -143,16 +143,16 @@ const markdownOptions: DropdownOption[] = [
 
 const imageLightOptions: DropdownOption[] = [
     { text: 'None', value: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/No_image.svg'},
-    { text: 'ZEIT', value: 'https://assets.zeit.co/image/upload/front/assets/design/zeit-black-triangle.svg' },
-    { text: 'Next.js', value: 'https://assets.zeit.co/image/upload/front/assets/design/nextjs-black-logo.svg' },
-    { text: 'Hyper', value: 'https://assets.zeit.co/image/upload/front/assets/design/hyper-color-logo.svg' },
+    { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg' },
+    { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-black-logo.svg' },
+    { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-color-logo.svg' },
 ];
 
 const imageDarkOptions: DropdownOption[] = [
     { text: 'None', value: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/No_image.svg'},
-    { text: 'ZEIT', value: 'https://assets.zeit.co/image/upload/front/assets/design/zeit-white-triangle.svg' },
-    { text: 'Next.js', value: 'https://assets.zeit.co/image/upload/front/assets/design/nextjs-white-logo.svg' },
-    { text: 'Hyper', value: 'https://assets.zeit.co/image/upload/front/assets/design/hyper-bw-logo.svg' },
+    { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg' },
+    { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-white-logo.svg' },
+    { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-bw-logo.svg' },
 ];
 
 const widthOptions = [
@@ -354,6 +354,20 @@ const App = (_: any, state: AppState, setState: SetState) => {
                                     let clone = [...heights];
                                     clone[i + 1] = val;
                                     setLoadingState({ heights: clone });
+                                }
+                            })
+                        ),
+                        H('div',
+                            { className: 'field-flex' },
+                            H(Button, {
+                                label: `Remove Image ${i + 2}`,
+                                onclick: (e: MouseEvent) => {
+                                    e.preventDefault();
+                                    const filter = (arr: any[]) => [...arr].filter((_, n) => n !== i + 1);
+                                    const imagesClone = filter(images);
+                                    const widthsClone = filter(widths);
+                                    const heightsClone = filter(heights);
+                                    setLoadingState({ images: imagesClone, widths: widthsClone, heights: heightsClone });
                                 }
                             })
                         )
